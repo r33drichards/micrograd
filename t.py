@@ -34,7 +34,6 @@ class MLP(nn.Module):
             nn.Linear(64, 64),
             nn.ReLU(),
             nn.Linear(64, 10),
-            nn.Softmax(dim=1)
         )
 
     def forward(self, x):
