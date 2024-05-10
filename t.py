@@ -29,11 +29,11 @@ class MLP(nn.Module):
     def __init__(self):
         super(MLP, self).__init__()
         self.layers = nn.Sequential(
-            nn.Linear(64, 32),
+            nn.Linear(64, 28),
             nn.ReLU(),
-            nn.Linear(32, 32),
+            nn.Linear(28, 28),
             nn.ReLU(),
-            nn.Linear(32, 10)
+            nn.Linear(28, 10)
         )
 
     def forward(self, x):
@@ -52,7 +52,7 @@ def accuracy(outputs, labels):
     return (predicted == labels).float().mean()
 
 # Training the model
-num_epochs = 10
+num_epochs = 100
 from tqdm import tqdm
 
 for epoch in tqdm(range(num_epochs)):
@@ -92,6 +92,8 @@ with torch.no_grad():
             plt.imshow(inputs[i].view(8, 8))
             plt.title(f'Predicted: {predicted[i]}, Target: {labels[i]}')
             plt.axis('off')
+        # add total accuracy
+        plt.suptitle(f'Test Accuracy: {100 * correct / total:.2f}%')
         plt.show()
         break
 
