@@ -1,0 +1,59 @@
+{
+  "nodes": {
+    "flakery": {
+      "inputs": {
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1711512632,
+        "narHash": "sha256-/mkHWfHOeOYVJsemIGPL0fELjXpUgPGFE5aBdhuiPQk=",
+        "owner": "getflakery",
+        "repo": "flakes",
+        "rev": "e418e1945b7b1e6fdaadc9cc84cf1daeca3c3117",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getflakery",
+        "repo": "flakes",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1700204040,
+        "narHash": "sha256-xSVcS5HBYnD3LTer7Y2K8ZQCDCXMa3QUD1MzRjHzuhI=",
+        "path": "/nix/store/rj6pqzx66pliiwdfk2wjnnlk40rm3mpd-source",
+        "rev": "c757e9bd77b16ca2e03c89bf8bc9ecb28e0c06ad",
+        "type": "path"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1715534503,
+        "narHash": "sha256-5ZSVkFadZbFP1THataCaSf0JH2cAH3S29hU9rrxTEqk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "2057814051972fa1453ddfb0d98badbea9b83c06",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flakery": "flakery",
+        "nixpkgs": "nixpkgs_2"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
