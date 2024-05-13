@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  pythonEnv = pkgs.python3.withPackages (ps: with ps; [
+  pythonEnv = pkgs.python311.withPackages (ps: with ps; [
       numpy
       matplotlib
       scikit-learn
@@ -42,7 +42,7 @@ let
     source /tmp/.venv/bin/activate
     pip install 'gymnasium[atari]'
     pip install 'gymnasium[accept-rom-license]'
-    /tmp/.venv/bin/python ${app}/bin/bo.py
+    python ${app}/bin/bo.py
   '';
 
 in
