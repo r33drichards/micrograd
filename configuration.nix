@@ -35,7 +35,7 @@ let
 
    };
   script = ''
-    export DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
+    rm -rf /tmp/.venv
     python3 -m venv /tmp/.venv
     # activate the virtual environment
     source /tmp/.venv/bin/activate
