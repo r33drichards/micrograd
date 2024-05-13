@@ -6,8 +6,6 @@ from torch.utils.data import DataLoader, TensorDataset
 from sklearn.datasets import load_digits
 import numpy as np
 import matplotlib.pyplot as plt
-from torch.utils.tensorboard import SummaryWriter
-writer = SummaryWriter()
 
 # Set random seed for reproducibility
 torch.manual_seed(1337)
@@ -62,7 +60,6 @@ for epoch in tqdm(range(num_epochs)):
         optimizer.zero_grad()
         outputs = model(inputs)
         loss = criterion(outputs, labels)
-        writer.add_scalar("Loss/train", loss, epoch)
         loss.backward()
         optimizer.step()
     # Print loss every 10 epochs

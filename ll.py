@@ -100,3 +100,24 @@ with torch.no_grad():
         plt.show()
         break
 
+
+def train(num_episodes, f=None, render_mode="human"):
+    env = gym.make("LunarLander-v2", render_mode=render_mode)
+
+    agent = Agent(
+    env=env,
+    )
+    if f is not None:
+        agent.load(f)
+    observation, info = env.reset(seed=42)
+    for e in tqdm(range(num_episodes)):
+        observation, reward, terminated, *rest = agent.feed_state(observation)
+        if terminated:
+            # agent.save(f"lunar.{e}.pt")
+            observation, info = env.reset()
+
+    agent.save("lunar.pt")
+
+            
+
+    env.close()
