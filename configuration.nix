@@ -1,6 +1,5 @@
 { config, pkgs, ... }:
 let
-  flakeryDomain = builtins.readFile /metadata/flakery-domain;
   app = pkgs.stdenv.mkDerivation {
     name = "bopy";
     src = ./bo.py;
