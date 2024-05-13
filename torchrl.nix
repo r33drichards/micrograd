@@ -7,7 +7,7 @@ buildPythonPackage rec {
 
   src = fetchurl {
     url = "https://files.pythonhosted.org/packages/4d/41/3cd8607a4917a8c4859ec28dfb9fcc79c419c12a066bcacb0934a95282ed/torchrl-0.3.1-cp311-cp311-manylinux1_x86_64.whl";
-    sha256 = ""; # TODO: Add the sha256 hash for the wheel file
+    sha256 = "sha256-H4G3T+e1TjF/geFSl90ujC4PmYFLoGB622zIB76RZSQ="; # TODO: Add the sha256 hash for the wheel file
   };
 
   propagatedBuildInputs = [
