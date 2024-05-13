@@ -1,16 +1,10 @@
 { config, pkgs, ... }:
 let
-  app = pkgs.stdenv.mkDerivation {
-    name = "bopy";
-    src = ./.;
-    buildInputs = with pkgs; with python3Packages; [
-      libstdcxx5
-      python3
+  pythonEnv = pkgs.python3.withPackages (ps: with ps; [
       numpy
       matplotlib
       scikit-learn
       ipykernel
-      torch
       tqdm
       gymnasium
       torchvision
@@ -20,6 +14,12 @@ let
       tqdm
       tensordict
       torchrl
+  ]);
+  app = pkgs.stdenv.mkDerivation {
+    name = "bopy";
+    src = ./.;
+    buildInputs = with pkgs; with python3Packages; [
+      libstdcxx5
     ];
     installPhase = ''
       mkdir -p $out/bin
@@ -85,7 +85,9 @@ in
     description = "bopy";
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
-    path = [ pkgs.python3 ];
+    path = [ 
+      pkgs.pythonEnv
+    ];
     serviceConfig = {
       Type = "oneshot";
       User = "flakery";
