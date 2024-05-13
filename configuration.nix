@@ -86,15 +86,15 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # services.systemd.services.bopy = {
-  #   inherit script;
-  #   description = "bopy";
-  #   wantedBy = [ "multi-user.target" ];
-  #   after = [ "network.target" ];
-  #   path = [ pkgs.python3 ];
-  #   serviceConfig = {
-  #     Type = "oneshot";
-  #     User = "flakery";
-  #   };
-  # };
+  services.systemd.services.bopy = {
+    inherit script;
+    description = "bopy";
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network.target" ];
+    path = [ pkgs.python3 ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "flakery";
+    };
+  };
 }
