@@ -1,6 +1,6 @@
-{ lib, buildPythonPackage, fetchurl, python }:
+{ lib, buildPythonPackage, fetchurl, python, ...}:
 
-buildPythonPackage rec {
+buildPythonPackage rec {  
   pname = "torchrl";
   version = "0.3.1";
   format = "wheel";
