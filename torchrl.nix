@@ -7,6 +7,8 @@ buildPythonPackage rec {
   src = fetchPypi {
     inherit pname version;
     sha256 = ""; # Replace with the actual sha256 hash
+        extension = ".whl";
+
   };
 
   propagatedBuildInputs = [
