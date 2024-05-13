@@ -31,7 +31,6 @@ let
     source /tmp/.venv/bin/activate
     pip install 'gymnasium[atari]'
     pip install 'gymnasium[accept-rom-license]'
-    pip install gym-super-mario-bros==7.4.0
     pip install torchrl==0.3.0
     pip install tensordict==0.3.0
     python3 ${app}/bin/bo.py
