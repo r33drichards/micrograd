@@ -36,12 +36,12 @@ let
    };
   script = ''
     rm -rf /tmp/.venv
-    python3 -m venv /tmp/.venv
+    ${pythonEnv}/bin/python3 -m venv /tmp/.venv
     # activate the virtual environment
     source /tmp/.venv/bin/activate
     pip install 'gymnasium[atari]'
     pip install 'gymnasium[accept-rom-license]'
-    python3 ${app}/bin/bo.py
+    /tmp/.venv/bin/python ${app}/bin/bo.py
   '';
 
 in
@@ -85,9 +85,6 @@ in
     description = "bopy";
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
-    path = [ 
-      pythonEnv
-    ];
     serviceConfig = {
       Type = "oneshot";
       User = "flakery";
