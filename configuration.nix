@@ -2,7 +2,9 @@
 let
   app = pkgs.stdenv.mkDerivation {
     name = "bopy";
-    src = ./bo.py;
+    # src = ./
+    # current dir but filter to only include the python file bo.py
+    src = pkgs.lib.filterSource (path: type: type == "regular" && builtins.elem "bo.py" (builtins.baseName path)) ./.;
     buildInputs = with pkgs; with python3Packages; [
       python3
       numpy
