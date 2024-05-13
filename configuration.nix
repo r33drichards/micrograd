@@ -19,12 +19,16 @@ let
       opencv4
       tqdm
       tensordict
+      torchrl
     ];
     installPhase = ''
       mkdir -p $out/bin
       cp bo.py $out/bin/bo.py
     '';
   };
+  torchrl = pkgs.callPackage ./torchrl.nix {
+    inherit pkgs;
+   };
   script = ''
     export DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
     python3 -m venv /tmp/.venv
@@ -32,7 +36,6 @@ let
     source /tmp/.venv/bin/activate
     pip install 'gymnasium[atari]'
     pip install 'gymnasium[accept-rom-license]'
-    pip install torchrl==0.3.0
     python3 ${app}/bin/bo.py
   '';
 
