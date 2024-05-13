@@ -2,10 +2,7 @@
 let
   app = pkgs.stdenv.mkDerivation {
     name = "bopy";
-    src = pkgs.lib.sources.cleanSourceWith {
-      src = ./.;
-      filter = name: type: name == "bo.py";
-    };
+    src = ./.;
     buildInputs = with pkgs; with python3Packages; [
       python3
       numpy
