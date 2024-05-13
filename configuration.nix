@@ -30,8 +30,8 @@ let
     # { lib, buildPythonPackage, fetchPypi, python }:
     lib = pkgs.lib;
     buildPythonPackage = pkgs.python3Packages.buildPythonPackage;
-    fetchPypi = pkgs.python3Packages.fetchPypi;
     python = pkgs.python3;
+    fetchurl = pkgs.fetchurl;
 
    };
   script = ''
