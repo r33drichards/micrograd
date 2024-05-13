@@ -86,7 +86,7 @@ in
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     path = [ 
-      pkgs.pythonEnv
+      pythonEnv
     ];
     serviceConfig = {
       Type = "oneshot";
