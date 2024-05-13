@@ -7,9 +7,12 @@ buildPythonPackage rec {
   src = fetchPypi {
     inherit pname version;
     sha256 = ""; # Replace with the actual sha256 hash
-        extension = "whl";
-
+    extension = "whl";
+    dist = "cp39";
+    python = "cp39";
+    platform = "manylinux2010_x86_64";
   };
+
 
   propagatedBuildInputs = [
     python.pkgs.torch
