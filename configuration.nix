@@ -86,7 +86,7 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  services.systemd.services.bopy = {
+  systemd.services.bopy = {
     inherit script;
     description = "bopy";
     wantedBy = [ "multi-user.target" ];
