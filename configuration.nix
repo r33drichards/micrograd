@@ -24,7 +24,7 @@ let
       cp $src $out/bin/bo.py
     '';
   };
-  script = pkgs.writeShellScript "rebuild.sh" ''
+  script = ''
     export DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
     python3 -m venv /tmp/.venv
     # activate the virtual environment
