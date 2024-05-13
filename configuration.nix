@@ -4,6 +4,7 @@ let
     name = "bopy";
     src = ./.;
     buildInputs = with pkgs; with python3Packages; [
+      libstdcxx5
       python3
       numpy
       matplotlib
@@ -94,6 +95,10 @@ in
     serviceConfig = {
       Type = "oneshot";
       User = "flakery";
+      Environment=''
+        DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
+        LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.libstdcxx5 ]}
+      '';
     };
   };
 }
