@@ -27,6 +27,5 @@ pkgs.mkShell {
   pip install gym-super-mario-bros==7.4.0
   pip install torchrl==0.3.0
   pip install tensordict==0.3.0
-
   '';
 }
