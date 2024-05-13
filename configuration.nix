@@ -27,7 +27,12 @@ let
     '';
   };
   torchrl = pkgs.callPackage ./torchrl.nix {
-    inherit pkgs;
+    # { lib, buildPythonPackage, fetchPypi, python }:
+    lib = pkgs.lib;
+    buildPythonPackage = pkgs.python3Packages.buildPythonPackage;
+    fetchPypi = pkgs.python3Packages.fetchPypi;
+    python = pkgs.python3;
+
    };
   script = ''
     export DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}

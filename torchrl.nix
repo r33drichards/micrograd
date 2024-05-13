@@ -1,6 +1,4 @@
-{ pkgs ? import <nixpkgs> { } }:
-
-with pkgs; with lib;
+{ lib, buildPythonPackage, fetchPypi, python }:
 
 buildPythonPackage rec {
   pname = "torchrl";
