@@ -14,6 +14,7 @@ let
       tqdm
       tensordict
       torchrl
+      torch
   ]);
   app = pkgs.stdenv.mkDerivation {
     name = "bopy";
