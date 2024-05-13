@@ -3,14 +3,16 @@
 buildPythonPackage rec {
   pname = "torchrl";
   version = "0.3.1";
+  format = "wheel";
 
-  src = fetchPypi {
-    inherit pname version;
-    sha256 = ""; # Replace with the actual sha256 hash
-    extension = "whl";
-    dist = "cp39";
-    python = "cp39";
-    platform = "manylinux2010_x86_64";
+
+  src = fetchPypi rec {
+    inherit pname version format;
+    sha256 = ""; # TODO
+    dist = python;
+    python = "py3";
+    #abi = "none";
+    #platform = "any";
   };
 
 
@@ -26,3 +28,4 @@ buildPythonPackage rec {
     maintainers = with maintainers; [ ];
   };
 }
+
