@@ -24,7 +24,7 @@ let
     ];
     installPhase = ''
       mkdir -p $out/bin
-      cp $src $out/bin/bo.py
+      cp $src/bo.py $out/bin/bo.py
     '';
   };
   script = ''
