@@ -21,6 +21,7 @@ let
     src = ./.;
     buildInputs = with pkgs; with python3Packages; [
       libstdcxx5
+      pythonEnv
     ];
     installPhase = ''
       mkdir -p $out/bin
@@ -62,6 +63,9 @@ in
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     # password = "flakery"; # Set the password for the user.
+    packages = with pkgs; [
+      app
+    ];
   };
   # allow sudo without password for wheel
   security.sudo.wheelNeedsPassword = false;
