@@ -1,20 +1,20 @@
 { config, pkgs, ... }:
 let
   pythonEnv = pkgs.python311.withPackages (ps: with ps; [
-      numpy
-      matplotlib
-      scikit-learn
-      ipykernel
-      tqdm
-      gymnasium
-      torchvision
-      tensorboard
-      torch-tb-profiler
-      opencv4
-      tqdm
-      mytensordict
-      torchrl
-      torch
+    numpy
+    matplotlib
+    scikit-learn
+    ipykernel
+    tqdm
+    gymnasium
+    torchvision
+    tensorboard
+    torch-tb-profiler
+    opencv4
+    tqdm
+    mytensordict
+    torchrl
+    torch
   ]);
   app = pkgs.stdenv.mkDerivation {
     name = "bopy";
@@ -35,15 +35,15 @@ let
     python = pkgs.python3;
     fetchurl = pkgs.fetchurl;
 
-   };
-   mytensordict = pkgs.callPackage ./tensordict.nix {
+  };
+  mytensordict = pkgs.callPackage ./tensordict.nix {
     # { lib, buildPythonPackage, fetchPypi, python }:
     lib = pkgs.lib;
     buildPythonPackage = pkgs.python3Packages.buildPythonPackage;
     python = pkgs.python3;
     fetchurl = pkgs.fetchurl;
 
-   };
+  };
   script = ''
     rm -rf /tmp/.venv
     ${pythonEnv}/bin/python3 -m venv  --system-site-packages /tmp/.venv
@@ -101,12 +101,16 @@ in
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     serviceConfig = {
-      Type = "oneshot";
+      Type = "simple";
       User = "flakery";
-      Environment=''
+      Environment = ''
         DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
         LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.libstdcxx5 ]}
       '';
+      Restart = "on-failure";
+      RestartSec = 0;
+      StartLimitBurst = 1;
+      StartLimitIntervalSec = 0;
     };
   };
 }
