@@ -65,6 +65,7 @@ in
     # password = "flakery"; # Set the password for the user.
     packages = with pkgs; [
       app
+      pythonEnv
     ];
   };
   # allow sudo without password for wheel
