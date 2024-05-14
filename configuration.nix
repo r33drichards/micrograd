@@ -12,7 +12,7 @@ let
       torch-tb-profiler
       opencv4
       tqdm
-      tensordict
+      # tensordict
       torchrl
       torch
   ]);
@@ -43,6 +43,7 @@ let
     source /tmp/.venv/bin/activate
     pip install 'gymnasium[atari]'
     pip install 'gymnasium[accept-rom-license]'
+    pip install tensordict==0.3.0
     python ${app}/bin/bo.py
   '';
 
@@ -95,6 +96,7 @@ in
       Type = "oneshot";
       User = "flakery";
       Environment=''
+        PYTHONHOME=${pythonEnv}
         DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
         LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.libstdcxx5 ]}
       '';
