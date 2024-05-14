@@ -46,7 +46,7 @@ let
    };
   script = ''
     rm -rf /tmp/.venv
-    ${pythonEnv}/bin/python3 -m venv /tmp/.venv
+    ${pythonEnv}/bin/python3 -m venv  --system-site-packages /tmp/.venv
     # activate the virtual environment
     source /tmp/.venv/bin/activate
     export PYTHONHOME=${pythonEnv}
