@@ -49,6 +49,7 @@ let
     ${pythonEnv}/bin/python3 -m venv /tmp/.venv
     # activate the virtual environment
     source /tmp/.venv/bin/activate
+    export PYTHONHOME=${pythonEnv}
     pip install 'gymnasium[atari]'
     pip install 'gymnasium[accept-rom-license]'
     python ${app}/bin/bo.py
@@ -103,7 +104,6 @@ in
       Type = "oneshot";
       User = "flakery";
       Environment=''
-        PYTHONHOME=${pythonEnv}
         DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
         LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.libstdcxx5 ]}
       '';
