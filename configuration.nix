@@ -12,7 +12,7 @@ let
       torch-tb-profiler
       opencv4
       tqdm
-      # tensordict
+      mytensordict
       torchrl
       torch
   ]);
@@ -36,6 +36,14 @@ let
     fetchurl = pkgs.fetchurl;
 
    };
+   mytensordict = pkgs.callPackage ./tensordict.nix {
+    # { lib, buildPythonPackage, fetchPypi, python }:
+    lib = pkgs.lib;
+    buildPythonPackage = pkgs.python3Packages.buildPythonPackage;
+    python = pkgs.python3;
+    fetchurl = pkgs.fetchurl;
+
+   };
   script = ''
     rm -rf /tmp/.venv
     ${pythonEnv}/bin/python3 -m venv /tmp/.venv
@@ -43,7 +51,6 @@ let
     source /tmp/.venv/bin/activate
     pip install 'gymnasium[atari]'
     pip install 'gymnasium[accept-rom-license]'
-    pip install tensordict==0.3.0
     python ${app}/bin/bo.py
   '';
 
@@ -62,7 +69,7 @@ in
 
   users.users.flakery = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the   user.
     # password = "flakery"; # Set the password for the user.
     packages = with pkgs; [
       app
