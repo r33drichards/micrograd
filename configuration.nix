@@ -101,10 +101,10 @@ in
     serviceConfig = {
       Type = "simple";
       User = "flakery";
-      Environment = ''
-        DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
-        LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.libstdcxx5 ]}
-      '';
+      Environment =  [
+        "DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}"
+        "LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.libstdcxx5 ]}"
+      ];
     };
   };
 }
