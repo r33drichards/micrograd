@@ -498,6 +498,7 @@ for e in range(episodes):
 
         # Check if end of game
         if done:
+            mario.save()
             break
 
     logger.log_episode()
