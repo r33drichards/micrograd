@@ -29,7 +29,6 @@ let
     '';
   };
   torchrl = pkgs.callPackage ./torchrl.nix {
-    # { lib, buildPythonPackage, fetchPypi, python }:
     lib = pkgs.lib;
     buildPythonPackage = pkgs.python3Packages.buildPythonPackage;
     python = pkgs.python3;
@@ -37,7 +36,6 @@ let
 
   };
   mytensordict = pkgs.callPackage ./tensordict.nix {
-    # { lib, buildPythonPackage, fetchPypi, python }:
     lib = pkgs.lib;
     buildPythonPackage = pkgs.python3Packages.buildPythonPackage;
     python = pkgs.python3;
@@ -107,10 +105,6 @@ in
         DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
         LD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.libstdcxx5 ]}
       '';
-      Restart = "on-failure";
-      RestartSec = 0;
-      StartLimitBurst = 1;
-      StartLimitIntervalSec = 0;
     };
   };
 }
