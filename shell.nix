@@ -1,8 +1,8 @@
 { pkgs ? import <nixpkgs> { } }:
 
 pkgs.mkShell {
-  buildInputs = with pkgs; with python3Packages; [
-    python3
+  buildInputs = with pkgs; with python311Packages; [
+    python311
     numpy
     matplotlib
     scikit-learn
@@ -15,10 +15,11 @@ pkgs.mkShell {
     torch-tb-profiler
     opencv4
     tqdm
+
     # tensordict
   ];
   shellHook = ''
-  export DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python3Packages.pytorch ]}
+  export DYLD_LIBRARY_PATH=${pkgs.lib.makeLibraryPath [ pkgs.python311Packages.pytorch ]}
   python3 -m venv .venv
   # activate the virtual environment
   source .venv/bin/activate
@@ -27,5 +28,6 @@ pkgs.mkShell {
   pip install gym-super-mario-bros==7.4.0
   pip install torchrl==0.3.0
   pip install tensordict==0.3.0
+  pip install stable_baselines3
   '';
 }

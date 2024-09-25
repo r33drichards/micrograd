@@ -157,7 +157,7 @@ class Mario:
         # Define the function to calculate epsilon
         def epsilon(steps_done, EPS_START, EPS_END, DECAY_RATE):
             return EPS_END + (EPS_START - EPS_END) * math.exp(-1. * steps_done / DECAY_RATE)
-        eps = epsilon(self.current_episode, 1, 0.1, 25000)
+        eps = epsilon(self.current_episode, 1, 0.1, 25000) # todo this is different 
         if np.random.rand() < self.exploration_rate:
             action_idx = np.random.randint(self.action_dim)
 
@@ -183,7 +183,8 @@ class Mario:
 class Mario(Mario):  # subclassing for continuity
     def __init__(self, state_dim, action_dim, save_dir):
         super().__init__(state_dim, action_dim, save_dir)
-        self.memory = TensorDictReplayBuffer(storage=LazyMemmapStorage(100000, device=torch.device("cpu")))
+
+        self.memory = TensorDictReplayBuffer(storage=LazyMemmapStorage(1000_000, device=self.device))
         self.batch_size = 32
 
     def cache(self, state, next_state, action, reward, done):
@@ -288,10 +289,11 @@ class Mario(Mario):
 class Mario(Mario):
     def __init__(self, state_dim, action_dim, save_dir):
         super().__init__(state_dim, action_dim, save_dir)
-        self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.00025)
+        # todo these are also different but supposedly better
+        self.optimizer = torch.optim.Adam(self.net.parameters(), lr=.01)
         self.loss_fn = torch.nn.SmoothL1Loss()
 
-    def update_Q_online(self, td_estimate, td_target):
+    def update_Q_online(self, td_estimate, td_target):  # batch
         loss = self.loss_fn(td_estimate, td_target)
         self.optimizer.zero_grad()
         loss.backward()
@@ -470,6 +472,8 @@ mario = Mario(state_dim=(4, 84, 84), action_dim=env.action_space.n, save_dir=sav
 logger = MetricLogger(save_dir)
 
 episodes = 100_000
+batchsize = 100
+batchnum = 0
 for e in range(episodes):
 
     state = env.reset(seed=420)
